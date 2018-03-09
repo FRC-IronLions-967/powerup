@@ -35,7 +35,7 @@
 			foreach($teams as $t){
 				$teamnum = $t['team_number'];
 				$nickname = $t['nickname'];
-				$locality = $t['locality'];
+				$locality = $t['city'] . ',' . $t['state_prov'];
 				$region = $t['region'];
 				echo "<tr><td>$teamnum $nickname<br>\n";
 				echo "<img src='pics/{$teamnum}.jpg' alt='No Picture' style='max-width: 250px'><br></td></tr>\n";

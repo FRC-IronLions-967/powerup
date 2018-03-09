@@ -11,7 +11,7 @@ try{
 	$matchnum = trim(mysqli_real_escape_string($conn, $_POST['matchnum']));
 	$practice = trim(mysqli_real_escape_string($conn, $_POST['practice']));
 	$baseline = trim(mysqli_real_escape_string($conn, $_POST['baseline']));
-	$auto_incap = trim(mysqli_real_escape_string($conn, $_POST['auto_incap']));
+	$cap = trim(mysqli_real_escape_string($conn, $_POST['auto_incap']));
 	$auto_pos = trim(mysqli_real_escape_string($conn, $_POST['auto_pos']));
 	$auto_switch = trim(mysqli_real_escape_string($conn, $_POST['auto_switch']));
 	$auto_scale = trim(mysqli_real_escape_string($conn, $_POST['auto_scale']));
@@ -31,8 +31,8 @@ try{
 	$tele_incap = trim(mysqli_real_escape_string($conn, $_POST['tele_incap']));
 	$comments = trim(mysqli_real_escape_string($conn, $_POST['comments']));
 	
-	$fields = "timestamp,team,event_code,scout_name,matchnum,practice,baseline,auto_incap,auto_pos,auto_switch,auto_scale,switch_made,switch_miss,scale_made,scale_miss,oppscale_made,oppscale_miss,vault_made,vault_miss,climb,foul,techfoul,card,defense,tele_incap,comments";
-	$values = "'$timestamp','$team','$event_code','$scout_name','$matchnum','$practice','$baseline','$auto_incap','$auto_pos','$auto_switch','$auto_scale','$switch_made','$switch_miss','$scale_made','$scale_miss','$oppscale_made','$oppscale_miss','$vault_made','$vault_miss','$climb','$foul','$techfoul','$card','$defense','$tele_incap','$comments'";
+	$fields = "timestamp,team,event_code,scout_name,matchnum,practice,baseline,auto_pos,auto_switch,auto_scale,switch_made,switch_miss,scale_made,scale_miss,oppscale_made,oppscale_miss,vault_made,vault_miss,climb,foul,techfoul,card,defense,tele_incap,comments";
+	$values = "'$timestamp','$team','$event_code','$scout_name','$matchnum','$practice','$baseline','$auto_pos','$auto_switch','$auto_scale','$switch_made','$switch_miss','$scale_made','$scale_miss','$oppscale_made','$oppscale_miss','$vault_made','$vault_miss','$climb','$foul','$techfoul','$card','$defense','$tele_incap','$comments'";
 }
 catch (Exception $e) {
 	//Stop the page before deleting old records if the POST data isn't found

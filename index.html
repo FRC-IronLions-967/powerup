@@ -306,28 +306,9 @@ function submitData(){
 		if(this.readyState == 4 & this.status == 200){
 			status(this.responseText);
 			if (this.responseText.substr(this.responseText.length - 13) == "successfully."){
+				clearData();
 				document.getElementById('team').value=0;
-				document.getElementById('scout_name').value="";
-				document.getElementById('matchnum').value = document.getElementById('matchnum').value + 1;
-				document.getElementById('baseline').checked = false;
-				document.getElementById('auto_pos').value=0;
-				document.getElementById('auto_switch').value=0;
-				document.getElementById('auto_scale').value=0;
-				document.getElementById('switch_made').value=0;
-				document.getElementById('switch_miss').value=0;
-				document.getElementById('scale_made').value=0;
-				document.getElementById('scale_miss').value=0;
-				document.getElementById('oppscale_made').value=0;
-				document.getElementById('oppscale_miss').value=0;
-				document.getElementById('vault_made').value=0;
-				document.getElementById('vault_miss').value=0;
-				document.getElementById('climb').value=0;
-				document.getElementById('foul').value=0;
-				document.getElementById('techfoul').value=0;
-				document.getElementById('card').value=0;
-				document.getElementById('defense').checked=false;
-				document.getElementById('tele_incap').checked=false;
-				document.getElementById('comments').checked=false;
+				document.getElementById('matchnum').value = parseInt(document.getElementById('matchnum').value) + 1;
 			}
 		}
 	}
@@ -336,6 +317,30 @@ function submitData(){
 	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xhr.send(encodeURI(params));
 	status("Sending Data...");
+}
+
+function clearData(){
+	document.getElementById('scout_name').value="";
+	document.getElementById('baseline').checked = false;
+	document.getElementById('auto_pos').value=0;
+	document.getElementById('auto_switch').value=0;
+	document.getElementById('auto_scale').value=0;
+	document.getElementById('switch_made').value=0;
+	document.getElementById('switch_miss').value=0;
+	document.getElementById('scale_made').value=0;
+	document.getElementById('scale_miss').value=0;
+	document.getElementById('oppscale_made').value=0;
+	document.getElementById('oppscale_miss').value=0;
+	document.getElementById('vault_made').value=0;
+	document.getElementById('vault_miss').value=0;
+	document.getElementById('climb').value=0;
+	document.getElementById('foul').value=0;
+	document.getElementById('techfoul').value=0;
+	document.getElementById('card').value=0;
+	document.getElementById('defense').checked=false;
+	document.getElementById('tele_incap').checked=false;
+	document.getElementById('comments').value="";
+	updateNickname(teamData, document.getElementById('team').value);
 }
 
 function lookupMatchData(){
@@ -350,18 +355,39 @@ function lookupMatchData(){
 				var data = JSON.parse(xhr.responseText);
 				//List lots of variables
 				document.getElementById('scout_name').value = data['scout_name'];
+				document.getElementById('baseline').checked  =!! +  data['baseline'];
+				document.getElementById('auto_pos').value = data['auto_pos'];
+				document.getElementById('auto_switch').value = data['auto_switch'];
+				document.getElementById('auto_scale').value = data['auto_scale'];
+				document.getElementById('switch_made').value = data['switch_made'];
+				document.getElementById('switch_miss').value = data['switch_miss'];
+				document.getElementById('scale_made').value = data['scale_made'];
+				document.getElementById('scale_miss').value = data['scale_miss'];
+				document.getElementById('oppscale_made').value = data['oppscale_made'];
+				document.getElementById('oppscale_miss').value = data['oppscale_miss'];
+				document.getElementById('vault_made').value = data['vault_made'];
+				document.getElementById('vault_miss').value = data['vault_miss'];
+				document.getElementById('climb').value = data['climb'];
+				document.getElementById('foul').value = data['foul'];
+				document.getElementById('techfoul').value = data['techfoul'];
+				document.getElementById('card').value = data['card'];
+				document.getElementById('defense').checked = !! + data['defense'];
+				document.getElementById('tele_incap').checked = !! + data['tele_incap'];
+				document.getElementById('comments').value = data['comments'];
+
+
 			}
 			else {
 				status("No data for Match "+document.getElementById('matchnum').value +" team " + document.getElementById('team').value);
-				//reset lots of elements
-				document.getElementById('scout_name').value = "";
+				//document.getElementById('scout_name').value = "";
+				clearData();
 			}
 		}
 		else{
 			status("Looking for Match "+document.getElementById('matchnum').value +" team " + document.getElementById('team').value);
 		}
 	};
-	xhr.open('GET', 'match_team_get.php?team=' + document.getElementById('team').value + '&matchnum = '+document.getElementById('matchnum').value);
+	xhr.open('GET', 'match_team_get.php?team=' + document.getElementById('team').value + '&matchnum='+document.getElementById('matchnum').value);
 	xhr.send();
 }
 
@@ -375,6 +401,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 	document.getElementById('team').addEventListener("change", function(){
 		updateNickname(teamData, document.getElementById('team').value);
+		lookupMatchData();
 	});
 
 	document.getElementById('submit').addEventListener("click", function(){
