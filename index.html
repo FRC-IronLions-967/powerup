@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- <link rel='stylesheet' href="stylesheet.css"> -->
+	<link rel='stylesheet' href="w3.css">
+	<link rel='stylesheet' href="w3-theme-red.css">
+	<link rel='stylesheet' href="style.css">
+	<link rel="icon" href="logo.ico" type="image/ico" sizes="16x16">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+	<script src="teamData.js"></script>
+	<script src="scheduleData.js"></script>
+</head>
+
+<body class="w3-theme-d3">      
+
+<ul class="w3-navbar w3-theme-l3 w3-round-xxlarge w3-border-black">
+	<li><a href='index.html'>Match Scouting</a></li>
+	<li><a href="pitscouting.html">Pit Scouting</a></li>
+	<li><a href="schedule.php">Schedule</a></li>
+	<li><a href="teams.php">Team List</a></li>  
+	<!-- <li><a href="csv.php">Match CSV</a></li> -->
+	<!-- <li><a href="pitcsv.php">Pit CSV</a></li> -->
+	<li><a href="uploadPic.html">Upload Photos</a></li>
+	<!-- <li><a href="teamReport.html">Report</a></li> -->
+	<!-- <li><a href="intro.html">Intro</a></li> -->
+</ul>
+
+<div class="w3-panel w3-theme-l3 w3-padding-large w3-round-xxlarge w3-border w3-border-black w3-text-white w3-margin-left w3-margin-right ">
+<p class="status">Status text will display here</p>   
+<label for="matchnum">Match</label><br>
+<input type="number" name="matchnum" id="matchnum" min="1" max = "100" value="1">
+<label for="practice">Practice?</label>
+<input type="checkbox" name="practice" id="practice"><br><br>
+<!-- <strong><span style="margin-left: 10px" id="event_info"></span></strong><br><br> -->
+
+Team Number:<br>
+<!-- <button id="teamRefresh">Refresh Teams</button><br><br> -->
+<select id="team" name="team">
+	<option value=100>100</option>
+	<option value=200>200</option>
+	<option value=300>300</option>
+	<option value=400>400</option>
+	<option value=500>500</option>
+	<option value=600>600</option>
+</select><span id="nickname" style="margin-left: 10px;"></span><br><br>
+
+Scout Name:<br>
+<input type="text" name="scout_name" value="" id="scout_name">
+</div>
+
+<div class="w3-panel w3-theme-l3 w3-padding-large w3-round-xxlarge w3-border w3-border-black w3-text-white w3-margin-left w3-margin-right ">
+<h3>Autonomous</h3>
+
+<label for="auto_pos">Position</label>
+<select id="auto_pos" name="auto_pos">
+	<option value=0>Choose One</option>
+	<option value="left">Left</option>
+	<option value="mid">Middle</option>
+	<option value="right">Right</option>
+</select><br><br>
+<label for="baseline">Baseline</label>
+<input type="checkbox" name="baseline" id="baseline">
+<br><br>
+<label for="auto_switch">Switch </label>
+<select id="auto_switch">
+	<option value=0>Choose One</option>
+	<option value="-">Not Attempted</option>
+	<option value="x">Missed</option>
+	<option value="1">Made 1</option>
+	<option value="2">Made 2+</option>
+</select>
+<br><br>
+
+<label for="auto_scale">Scale </label>
+<select id="auto_scale">
+	<option value=0>Choose One</option>
+	<option valuel="-">Not Attempted</option>
+	<option valuel="x">Missed</option>
+	<option valuel="1">Made 1</option>
+	<option valuel="2">Made 2+</option>
+</select>
+
+</div>            
+
+
+<!-- TeleOp -->
+<div class="w3-panel w3-theme-l3 w3-padding-large w3-round-xxlarge w3-border w3-border-black w3-text-white w3-margin-left w3-margin-right ">
+
+<h3>TeleOp</h3>
+
+switch_made<br>
+<button class="m1 w3-btn w3-theme-l2 w3-border w3-border-black w3-round-large" id="m1switch_made">-1</button>
+<input type="number" id="switch_made" value=0 min=0 max=99></input>
+<button class="p1 w3-btn w3-theme-l2 w3-border w3-border-black w3-round-large" id="p1switch_made">+1</button><br>
+switch_miss<br>
+<button class="m1 w3-btn w3-theme-l2 w3-border w3-border-black w3-round-large" id="m1switch_miss">-1</button>
+<input type="number" id="switch_miss" value=0 min=0 max=99></input>
+<button class="p1 w3-btn w3-theme-l2 w3-border w3-border-black w3-round-large" id="p1switch_miss">+1</button><br>
+scale_made<br>
+<button class="m1 w3-btn w3-theme-l2 w3-border w3-border-black w3-round-large" id="m1scale_made">-1</button>
+<input type="number" id="scale_made" value=0 min=0 max=99></input>
+<button class="p1 w3-btn w3-theme-l2 w3-border w3-border-black w3-round-large" id="p1scale_made">+1</button><br>
+scale_miss<br>
+<button class="m1 w3-btn w3-theme-l2 w3-border w3-border-black w3-round-large" id="m1scale_miss">-1</button>
+<input type="number" id="scale_miss" value=0 min=0 max=99></input>
+<button class="p1 w3-btn w3-theme-l2 w3-border w3-border-black w3-round-large" id="p1scale_miss">+1</button><br>
+oppscale_made<br>
+<button class="m1 w3-btn w3-theme-l2 w3-border w3-border-black w3-round-large" id="m1oppscale_made">-1</button>
+<input type="number" id="oppscale_made" value=0 min=0 max=99></input>
+<button class="p1 w3-btn w3-theme-l2 w3-border w3-border-black w3-round-large" id="p1oppscale_made">+1</button><br>
+oppscale_miss<br>
+<button class="m1 w3-btn w3-theme-l2 w3-border w3-border-black w3-round-large" id="m1oppscale_miss">-1</button>
+<input type="number" id="oppscale_miss" value=0 min=0 max=99></input>
+<button class="p1 w3-btn w3-theme-l2 w3-border w3-border-black w3-round-large" id="p1oppscale_miss">+1</button><br>
+vault_made<br>
+<button class="m1 w3-btn w3-theme-l2 w3-border w3-border-black w3-round-large" id="m1vault_made">-1</button>
+<input type="number" id="vault_made" value=0 min=0 max=99></input>
+<button class="p1 w3-btn w3-theme-l2 w3-border w3-border-black w3-round-large" id="p1vault_made">+1</button><br>
+vault_miss<br>
+<button class="m1 w3-btn w3-theme-l2 w3-border w3-border-black w3-round-large" id="m1vault_miss">-1</button>
+<input type="number" id="vault_miss" value=0 min=0 max=99></input>
+<button class="p1 w3-btn w3-theme-l2 w3-border w3-border-black w3-round-large" id="p1vault_miss">+1</button><br>
+<br>
+<label for="climb">Climb</label>
+<select id="climb">
+	<option value=0>Choose One</option>
+	<option value="-">Not Attempted</option>
+	<option value="✔">Solo Success</option>
+	<option value="x">Solo Failed</option>
+	<option value="C✔">Carried Other Success</option>
+	<option value="Cx">Carried Other Failed</option>
+	<option value="R✔">Ride Other Success</option>
+	<option value="Rx">Ride Other Failed</option>
+</select>
+<br><br>
+
+<label for="tele_incap">Incapacitated</label>
+<input type="checkbox" name="tele_incap" id="tele_incap">
+<br>
+<br>
+<label for="defense">Defense</label>
+<input type="checkbox" name="defense" id="defense">
+<br>
+</div>
+
+<div class="w3-panel w3-theme-l3 w3-padding-large w3-round-xxlarge w3-border w3-border-black w3-text-white w3-margin-left w3-margin-right ">
+<h3>Fouls</h3>
+foul<br>
+<button class="m1 w3-btn w3-theme-l2 w3-border w3-border-black w3-round-large" id="m1foul">-1</button>
+<input type="number" id="foul" value=0 min=0 max=99></input>
+<button class="p1 w3-btn w3-theme-l2 w3-border w3-border-black w3-round-large" id="p1foul">+1</button><br>
+techfoul<br>
+<button class="m1 w3-btn w3-theme-l2 w3-border w3-border-black w3-round-large" id="m1techfoul">-1</button>
+<input type="number" id="techfoul" value=0 min=0 max=99></input>
+<button class="p1 w3-btn w3-theme-l2 w3-border w3-border-black w3-round-large" id="p1techfoul">+1</button><br>
+<br>
+<label for="card">Yellow / Red Card </label><input type="checkbox" id="card">
+
+</div>
+
+<div class="w3-panel w3-theme-l3 w3-padding-large w3-round-xxlarge w3-border w3-border-black w3-text-white w3-margin-left w3-margin-right">
+<h3>Comment Section</h3>
+
+<!--Comments:<br>
+<input type="text" name="comments" value="" id="comments">-->
+<textarea placeholder="Insert Comments Here" name="comments" value="" id="comments" style="width:300px;height:150px;"></textarea>
+
+</div>
+
+<input type="submit" value="Submit" id="submit" class="w3-btn-block w3-theme-l3 w3-border w3-border-black w3-text-red w3-round-large w3-text-white w3-margin-left w3-margin-right">
+
+<p class="status">Status text will display here</p>
+<script>
+
+plus = document.getElementsByClassName('p1');
+for (i=0; i<plus.length; i++){
+	var val_id = plus[i].id.substring(2);
+	plus[i].addEventListener("click",closure(val_id, 1));
+}
+
+minus = document.getElementsByClassName('m1');
+for (i=0; i<minus.length; i++){
+	var val_id = minus[i].id.substring(2);
+	minus[i].addEventListener("click",closure(val_id, -1));
+}
+
+function closure(id, amt){
+	return function(){
+		if ( parseInt(document.getElementById(id).value) + amt >= 0){
+			document.getElementById(id).value = parseInt(document.getElementById(id).value) + amt;
+		}
+	}
+}
+
+function updateTeams(arr, matchnum){
+	var teamList = [];
+	//add a '0' value to the beginning to avoid letting humans forget to select and default to first in list
+	if(arr.length > 0){
+		for (i = 0; i < arr.length; i++) {
+			if (arr[i]["comp_level"]==="qm"){
+				if(arr[i]["match_number"]==matchnum){
+					var red = arr[i]['alliances']['red']['team_keys'];
+					var blue = arr[i]['alliances']['blue']['team_keys'];
+					teamList.push(parseInt(red[0].slice(3)));
+					teamList.push(parseInt(red[1].slice(3)));
+					teamList.push(parseInt(red[2].slice(3)));
+					teamList.push(parseInt(blue[0].slice(3)));
+					teamList.push(parseInt(blue[1].slice(3)));
+					teamList.push(parseInt(blue[2].slice(3)));
+					break;
+				}
+			}
+		}
+	} else {
+		document.getElementById('practice').checked = true;
+		for (i = 0; i < teamData.length; i++){
+			teamList.push(parseInt(teamData[i]["team_number"]));
+		}
+		teamList.sort(function compareInt(a, b){return parseInt(a)-parseInt(b)});
+	}
+	if (teamList.length == 6){
+		var slots = ['Red 1: ', 'Red 2: ', 'Red 3: ', 'Blue1: ', 'Blue2: ', 'Blue3: '];
+		var choices = '';
+		choices += '<option value=0>Choose Team</option>\n';
+		for(i = 0; i < teamList.length; i++){
+			var team = teamList[i];
+			choices += '<option value='+team+'>'+slots[i]+team+'</option>\n';
+		}			
+	}  
+	else {
+		var choices = '';
+		choices += '<option value=0>Choose Team</option>\n';
+		for(i = 0; i < teamList.length; i++){
+			var team = teamList[i];
+			choices += '<option value='+team+'>'+team+'</option>\n';
+		}			
+	}
+	
+
+	document.getElementById('team').innerHTML = choices;
+}
+
+function updateNickname(arr, teamnum){
+	for (i = 0; i < arr.length; i++){
+		if (arr[i]['team_number']==teamnum){
+			document.getElementById('nickname').innerHTML = arr[i]['nickname'];
+			return;
+		}
+		document.getElementById('nickname').innerHTML = "";
+	}
+}
+
+function validateForm(){
+	var matchnum = document.getElementById('matchnum').value;
+	var team = document.getElementById('team').value;
+	var scout_name = document.getElementById('scout_name').value;
+	var validated = true;
+	if(matchnum==null||isNaN(matchnum)||team==null||team==0||team==""||scout_name==""||scout_name==null){
+		validated = false;
+		status('Fill out match number, team, and scout name.');
+	}
+	//validate HTML form data
+	//if form input is invalid, validated = false
+	return validated;
+}
+
+function status(m){
+	document.getElementsByClassName('status')[0].innerHTML = m;
+	document.getElementsByClassName('status')[1].innerHTML = m;
+}
+
+function submitData(){
+	status("Starting Request");
+	var xhr = new XMLHttpRequest();
+	var params = '';
+	params += 'team=' + document.getElementById('team').value;
+	params += '&event_code=mokc2';
+	params += '&scout_name=' + document.getElementById('scout_name').value;
+	params += '&matchnum='+ document.getElementById('matchnum').value;
+	params += '&practice='+ (document.getElementById('practice').checked ? 1:0);
+	params += '&scout_name='+ document.getElementById('scout_name').value;
+	params += '&baseline='+ (document.getElementById('baseline').checked ? 1:0);
+	params += '&auto_pos='+ document.getElementById('auto_pos').value;
+	params += '&auto_switch='+ document.getElementById('auto_switch').value;
+	params += '&auto_scale='+ document.getElementById('auto_scale').value;
+	params += '&switch_made='+ document.getElementById('switch_made').value;
+	params += '&switch_miss='+ document.getElementById('switch_miss').value;
+	params += '&scale_made='+ document.getElementById('scale_made').value;
+	params += '&scale_miss='+ document.getElementById('scale_miss').value;
+	params += '&oppscale_made='+ document.getElementById('oppscale_made').value;
+	params += '&oppscale_miss='+ document.getElementById('oppscale_miss').value;
+	params += '&vault_made='+ document.getElementById('vault_made').value;
+	params += '&vault_miss='+ document.getElementById('vault_miss').value;
+	params += '&climb='+ document.getElementById('climb').value;
+	params += '&foul='+ document.getElementById('foul').value;
+	params += '&techfoul='+ document.getElementById('techfoul').value;
+	params += '&card='+ (document.getElementById('card').checked ? 1:0);
+	params += '&defense='+ (document.getElementById('defense').checked ? 1:0);
+	params += '&tele_incap='+ (document.getElementById('tele_incap').checked ? 1:0);
+	params += '&comments='+ document.getElementById('comments').value;
+
+
+	// params += '&floor_pickup=' + (document.getElementById('floor_pickup').checked ? 1:0);
+
+	xhr.onreadystatechange = function(){
+		if(this.readyState == 4 & this.status == 200){
+			status(this.responseText);
+			if (this.responseText.substr(this.responseText.length - 13) == "successfully."){
+				document.getElementById('team').value=0;
+				document.getElementById('scout_name').value="";
+				document.getElementById('matchnum').value = document.getElementById('matchnum').value + 1;
+				document.getElementById('baseline').checked = false;
+				document.getElementById('auto_pos').value=0;
+				document.getElementById('auto_switch').value=0;
+				document.getElementById('auto_scale').value=0;
+				document.getElementById('switch_made').value=0;
+				document.getElementById('switch_miss').value=0;
+				document.getElementById('scale_made').value=0;
+				document.getElementById('scale_miss').value=0;
+				document.getElementById('oppscale_made').value=0;
+				document.getElementById('oppscale_miss').value=0;
+				document.getElementById('vault_made').value=0;
+				document.getElementById('vault_miss').value=0;
+				document.getElementById('climb').value=0;
+				document.getElementById('foul').value=0;
+				document.getElementById('techfoul').value=0;
+				document.getElementById('card').value=0;
+				document.getElementById('defense').checked=false;
+				document.getElementById('tele_incap').checked=false;
+				document.getElementById('comments').checked=false;
+			}
+		}
+	}
+	
+	xhr.open("POST", "insert_match.php", true); 
+	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xhr.send(encodeURI(params));
+	status("Sending Data...");
+}
+
+function lookupMatchData(){
+	status("Starting Request");
+
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if(this.readyState == 4 & this.status == 200){
+			if (xhr.responseText != 'null'){
+				status("Found data for Match "+document.getElementById('matchnum').value +" team " + document.getElementById('team').value);
+
+				var data = JSON.parse(xhr.responseText);
+				//List lots of variables
+				document.getElementById('scout_name').value = data['scout_name'];
+			}
+			else {
+				status("No data for Match "+document.getElementById('matchnum').value +" team " + document.getElementById('team').value);
+				//reset lots of elements
+				document.getElementById('scout_name').value = "";
+			}
+		}
+		else{
+			status("Looking for Match "+document.getElementById('matchnum').value +" team " + document.getElementById('team').value);
+		}
+	};
+	xhr.open('GET', 'match_team_get.php?team=' + document.getElementById('team').value + '&matchnum = '+document.getElementById('matchnum').value);
+	xhr.send();
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+	//Document ready function
+	updateTeams(scheduleData, document.getElementById('matchnum').value);
+
+	document.getElementById('matchnum').addEventListener("change", function(){
+		updateTeams(scheduleData, document.getElementById('matchnum').value);
+	});
+
+	document.getElementById('team').addEventListener("change", function(){
+		updateNickname(teamData, document.getElementById('team').value);
+	});
+
+	document.getElementById('submit').addEventListener("click", function(){
+		if (validateForm()){
+			submitData();
+		}
+		else {
+			status("Form data incomplete - needs match number, team, and scout name.");
+		}
+	});
+
+
+});
+
+</script>
+
+</body>
+</html>

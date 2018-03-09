@@ -1,0 +1,4 @@
+https://www.thebluealliance.com/apidocs/v3
+
+zdnemo@gmail.com account has X-Api-Auth-Key:
+mfRYpEpNbmiknYuH9Y1UfBgN8IXb1DXj5d18898PeajWHRdA69M6qTOtvZRz7zYZ
