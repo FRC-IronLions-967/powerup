@@ -54,17 +54,17 @@ Scout Name:<br>
 <label for="auto_pos">Position</label>
 <select id="auto_pos" name="auto_pos">
 	<option value=0>Choose One</option>
-	<option value="left">Left</option>
-	<option value="mid">Middle</option>
-	<option value="right">Right</option>
+	<option value="L">Left</option>
+	<option value="M">Middle</option>
+	<option value="R">Right</option>
 </select><br><br>
 <label for="baseline">Baseline</label>
 <input type="checkbox" name="baseline" id="baseline">
 <br><br>
 <label for="auto_switch">Switch </label>
 <select id="auto_switch">
-	<option value=0>Choose One</option>
-	<option value="-">Not Attempted</option>
+	<option value="">Choose One</option>
+	<option value="">Not Attempted</option>
 	<option value="x">Missed</option>
 	<option value="1">Made 1</option>
 	<option value="2">Made 2+</option>
@@ -73,11 +73,11 @@ Scout Name:<br>
 
 <label for="auto_scale">Scale </label>
 <select id="auto_scale">
-	<option value=0>Choose One</option>
-	<option valuel="-">Not Attempted</option>
-	<option valuel="x">Missed</option>
-	<option valuel="1">Made 1</option>
-	<option valuel="2">Made 2+</option>
+	<option value="">Choose One</option>
+	<option value="">Not Attempted</option>
+	<option value="x">Missed</option>
+	<option value="1">Made 1</option>
+	<option value="2">Made 2+</option>
 </select>
 
 </div>            
@@ -88,48 +88,48 @@ Scout Name:<br>
 
 <h3>TeleOp</h3>
 
-switch_made<br>
+Switch Made<br>
 <button class="m1 w3-btn w3-theme-l2 w3-border w3-border-black w3-round-large" id="m1switch_made">-1</button>
 <input type="number" id="switch_made" value=0 min=0 max=99></input>
 <button class="p1 w3-btn w3-theme-l2 w3-border w3-border-black w3-round-large" id="p1switch_made">+1</button><br>
-switch_miss<br>
+Switch Miss<br>
 <button class="m1 w3-btn w3-theme-l2 w3-border w3-border-black w3-round-large" id="m1switch_miss">-1</button>
 <input type="number" id="switch_miss" value=0 min=0 max=99></input>
 <button class="p1 w3-btn w3-theme-l2 w3-border w3-border-black w3-round-large" id="p1switch_miss">+1</button><br>
-scale_made<br>
+Scale Made<br>
 <button class="m1 w3-btn w3-theme-l2 w3-border w3-border-black w3-round-large" id="m1scale_made">-1</button>
 <input type="number" id="scale_made" value=0 min=0 max=99></input>
 <button class="p1 w3-btn w3-theme-l2 w3-border w3-border-black w3-round-large" id="p1scale_made">+1</button><br>
-scale_miss<br>
+Scale Miss<br>
 <button class="m1 w3-btn w3-theme-l2 w3-border w3-border-black w3-round-large" id="m1scale_miss">-1</button>
 <input type="number" id="scale_miss" value=0 min=0 max=99></input>
 <button class="p1 w3-btn w3-theme-l2 w3-border w3-border-black w3-round-large" id="p1scale_miss">+1</button><br>
-oppscale_made<br>
+Opponent Switch Made<br>
 <button class="m1 w3-btn w3-theme-l2 w3-border w3-border-black w3-round-large" id="m1oppscale_made">-1</button>
 <input type="number" id="oppscale_made" value=0 min=0 max=99></input>
 <button class="p1 w3-btn w3-theme-l2 w3-border w3-border-black w3-round-large" id="p1oppscale_made">+1</button><br>
-oppscale_miss<br>
+Opponent Switch Miss<br>
 <button class="m1 w3-btn w3-theme-l2 w3-border w3-border-black w3-round-large" id="m1oppscale_miss">-1</button>
 <input type="number" id="oppscale_miss" value=0 min=0 max=99></input>
 <button class="p1 w3-btn w3-theme-l2 w3-border w3-border-black w3-round-large" id="p1oppscale_miss">+1</button><br>
-vault_made<br>
+Exchange Zone Cube Made<br>
 <button class="m1 w3-btn w3-theme-l2 w3-border w3-border-black w3-round-large" id="m1vault_made">-1</button>
 <input type="number" id="vault_made" value=0 min=0 max=99></input>
 <button class="p1 w3-btn w3-theme-l2 w3-border w3-border-black w3-round-large" id="p1vault_made">+1</button><br>
-vault_miss<br>
+Exchange Zone Cube Miss<br>
 <button class="m1 w3-btn w3-theme-l2 w3-border w3-border-black w3-round-large" id="m1vault_miss">-1</button>
 <input type="number" id="vault_miss" value=0 min=0 max=99></input>
 <button class="p1 w3-btn w3-theme-l2 w3-border w3-border-black w3-round-large" id="p1vault_miss">+1</button><br>
 <br>
 <label for="climb">Climb</label>
 <select id="climb">
-	<option value=0>Choose One</option>
+	<option value="">Choose One</option>
 	<option value="-">Not Attempted</option>
-	<option value="✔">Solo Success</option>
+	<option value="1">Solo Success</option>
 	<option value="x">Solo Failed</option>
-	<option value="C✔">Carried Other Success</option>
+	<option value="C1">Carried Other Success</option>
 	<option value="Cx">Carried Other Failed</option>
-	<option value="R✔">Ride Other Success</option>
+	<option value="RS">Ride Other Success</option>
 	<option value="Rx">Ride Other Failed</option>
 </select>
 <br><br>

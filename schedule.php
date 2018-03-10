@@ -30,13 +30,18 @@
     		<li><a href="teams.php">Team List</a></li>  
   		</ul>
   		<div class="w3-panel w3-theme-l3 w3-padding-large w3-round-xxlarge w3-border w3-border-black w3-text-white w3-margin-left w3-margin-right">
-  			<p><a href="http://www.nemoquiz.com/steamworks/schedule967.php">967 Schedule</a></p>
+  			<p><a href="schedule967.php">967 Schedule</a></p>
 			<table class"w3-table"><tr><th>Match</th><th colspan="3" class="w3-red" >Red</th><th colspan="3" class="w3-blue">Blue</th></tr>
 			<?php
 			//Start on character 19, because the JS file includes "var scheduleData = " that we wish to ignore here.
 			$string =substr(file_get_contents("scheduleData.js"),19);
 			$sched = json_decode($string, true);
-			asort($sched);
+			// asort($sched);
+
+			function num_sort($a, $b) {
+			    return intval($a['match_number']) - intval($b['match_number']);
+			}
+			usort($sched, 'num_sort');
 			foreach($sched as $s){
 				if($s['comp_level']=='qm'){
 					$matchnum = $s['match_number'];

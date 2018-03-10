@@ -11,7 +11,6 @@ try{
 	$matchnum = trim(mysqli_real_escape_string($conn, $_POST['matchnum']));
 	$practice = trim(mysqli_real_escape_string($conn, $_POST['practice']));
 	$baseline = trim(mysqli_real_escape_string($conn, $_POST['baseline']));
-	$cap = trim(mysqli_real_escape_string($conn, $_POST['auto_incap']));
 	$auto_pos = trim(mysqli_real_escape_string($conn, $_POST['auto_pos']));
 	$auto_switch = trim(mysqli_real_escape_string($conn, $_POST['auto_switch']));
 	$auto_scale = trim(mysqli_real_escape_string($conn, $_POST['auto_scale']));
