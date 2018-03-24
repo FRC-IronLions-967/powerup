@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
+    <title>Report</title>
     <link rel='stylesheet' href="w3.css">
     <link rel='stylesheet' href="w3-theme-red.css">
     <link rel='stylesheet' href="style.css">
@@ -55,6 +56,7 @@
     <strong>Climber: </strong><span id="climb_solo">?</span><br>
     <strong>Cubes to Exchange</strong><span id="portal_deliver">?</span><br>
     <strong>Place on Scale: </strong><span id="place_scale">?</span><br>
+    <p id='pit_comments'></p>
     </p>
   
     <p>
@@ -192,6 +194,7 @@ function lookupTeamData(){
                 document.getElementById('climb_solo').innerHTML = data['climb_solo'];
                 document.getElementById('portal_deliver').innerHTML = data['portal_deliver'];
                 document.getElementById('place_scale').innerHTML = data['place_scale'];
+                document.getElementById('pit_comments').innerHTML = data['pit_comments'];
             }
             else {
                 status("No data found.");

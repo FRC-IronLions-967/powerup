@@ -2,6 +2,7 @@
 <html>
 <head>
 	<!-- <link rel='stylesheet' href="stylesheet.css"> -->
+	<title>Match Scouting</title>
 	<link rel='stylesheet' href="w3.css">
 	<link rel='stylesheet' href="w3-theme-red.css">
 	<link rel='stylesheet' href="style.css">
@@ -18,6 +19,7 @@
 	<li><a href="pitscouting.html">Pit Scouting</a></li>
 	<li><a href="schedule.php">Schedule</a></li>
 	<li><a href="teams.php">Team List</a></li>  
+	<li><a href="stats.php">Scout Stats</a></li>  
 	<!-- <li><a href="csv.php">Match CSV</a></li> -->
 	<!-- <li><a href="pitcsv.php">Pit CSV</a></li> -->
 	<li><a href="uploadPic.html">Upload Photos</a></li>
@@ -42,7 +44,9 @@ Team Number:<br>
 	<option value=400>400</option>
 	<option value=500>500</option>
 	<option value=600>600</option>
-</select><span id="nickname" style="margin-left: 10px;"></span><br><br>
+</select><span id="nickname" style="margin-left: 10px;"></span>
+<button id="refreshButton">Refresh Teams</button>
+<br><br>
 
 Scout Name:<br>
 <input type="text" name="scout_name" value="" id="scout_name">
@@ -170,6 +174,12 @@ techfoul<br>
 <input type="submit" value="Submit" id="submit" class="w3-btn-block w3-theme-l3 w3-border w3-border-black w3-text-red w3-round-large w3-text-white w3-margin-left w3-margin-right">
 
 <p class="status">Status text will display here</p>
+<p>Random Text for scrolling...</p>
+<p>Random Text for scrolling...</p>
+<p>Random Text for scrolling...</p>
+<p>Random Text for scrolling...</p>
+<p>Random Text for scrolling...</p>
+<p>Random Text for scrolling...</p>
 <script>
 
 plus = document.getElementsByClassName('p1');
@@ -309,6 +319,7 @@ function submitData(){
 				clearData();
 				document.getElementById('team').value=0;
 				document.getElementById('matchnum').value = parseInt(document.getElementById('matchnum').value) + 1;
+				updateTeams(scheduleData, document.getElementById('matchnum').value);
 			}
 		}
 	}
@@ -411,6 +422,9 @@ document.addEventListener("DOMContentLoaded", function() {
 		else {
 			status("Form data incomplete - needs match number, team, and scout name.");
 		}
+	});
+	document.getElementById('refreshButton').addEventListener("click", function(){
+		updateTeams(scheduleData, document.getElementById('matchnum').value);
 	});
 
 

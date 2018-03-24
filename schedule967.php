@@ -1,6 +1,7 @@
 <!doctype html>
 <html>
 	<head>
+		<title>967 Schedule</title>
   		<link rel='stylesheet' href="w3.css">
   		<link rel='stylesheet' href="w3-theme-red.css">
   		<link rel='stylesheet' href="tablestylesheet.css">

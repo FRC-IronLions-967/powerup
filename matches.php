@@ -1,6 +1,7 @@
 <!doctype html>
 <html>
 	<head>
+		<title>List Match Data</title>
 	  	<link rel='stylesheet' href="w3.css">
 	  	<link rel='stylesheet' href="w3-theme-red.css">
 	  	<link rel='stylesheet' href="tablestylesheet.css">
